@@ -1,0 +1,67 @@
+-- Make sure students exist and get their IDS
+-- Luna (1st student)
+INSERT INTO User (Email, Password)
+SELECT 'luna.hoxha@uni.de','LuH!2025#'
+WHERE NOT EXISTS (SELECT 1 FROM User WHERE Email='luna.hoxha@uni.de');
+SELECT UserID INTO @luna FROM User WHERE Email='luna.hoxha@uni.de' LIMIT 1;
+INSERT IGNORE INTO Student (UserID) VALUES (@luna);
+
+-- Marco (2nd student)
+INSERT INTO User (Email, Password)
+SELECT 'marco.bianchi@uni.de','Mb_97*Uni'
+WHERE NOT EXISTS (SELECT 1 FROM User WHERE Email='marco.bianchi@uni.de');
+SELECT UserID INTO @marco FROM User WHERE Email='marco.bianchi@uni.de' LIMIT 1;
+INSERT IGNORE INTO Student (UserID) VALUES (@marco);
+
+-- Sofia (3rd student)
+INSERT INTO User (Email, Password)
+SELECT 'sofia.martinez@uni.de','Sm@21Safe'
+WHERE NOT EXISTS (SELECT 1 FROM User WHERE Email='sofia.martinez@uni.de');
+SELECT UserID INTO @sofia FROM User WHERE Email='sofia.martinez@uni.de' LIMIT 1;
+INSERT IGNORE INTO Student (UserID) VALUES (@sofia);
+
+-- Luna reports backpack
+INSERT INTO Report (ReportDate, UserID) VALUES ('2025-09-10 09:15:00', @luna);
+SET @r1 = LAST_INSERT_ID();
+
+INSERT INTO Item (Name, Category, Description, Photo, LocationLost)
+SELECT 'Backpack','Bags','Black Eastpak','backpack.png','Library'
+WHERE NOT EXISTS (SELECT 1 FROM Item WHERE Name='Backpack');
+SELECT ItemID INTO @i1 FROM Item WHERE Name='Backpack' ORDER BY ItemID DESC LIMIT 1;
+
+INSERT IGNORE INTO LostItem (ItemID) VALUES (@i1);
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r1, @i1);
+
+-- Marco reports phone
+INSERT INTO Report (ReportDate, UserID) VALUES ('2025-09-12 14:45:00', @marco);
+SET @r2 = LAST_INSERT_ID();
+
+INSERT INTO Item (Name, Category, Description, Photo, LocationLost)
+SELECT 'Phone','Electronics','iPhone 13','phone.png','Gym'
+WHERE NOT EXISTS (SELECT 1 FROM Item WHERE Name='Phone');
+SELECT ItemID INTO @i2 FROM Item WHERE Name='Phone' ORDER BY ItemID DESC LIMIT 1;
+
+INSERT IGNORE INTO LostItem (ItemID) VALUES (@i2);
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r2, @i2);
+
+-- Sofia reports jacket
+INSERT INTO Report (ReportDate, UserID) VALUES ('2025-09-14 19:30:00', @sofia);
+SET @r3 = LAST_INSERT_ID();
+
+INSERT INTO Item (Name, Category, Description, Photo, LocationLost)
+SELECT 'Jacket','Clothes','Blue Adidas jacket','jacket.png','Cafeteria'
+WHERE NOT EXISTS (SELECT 1 FROM Item WHERE Name='Jacket');
+SELECT ItemID INTO @i3 FROM Item WHERE Name='Jacket' ORDER BY ItemID DESC LIMIT 1;
+
+INSERT IGNORE INTO LostItem (ItemID) VALUES (@i3);
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r3, @i3);
+
+-- Show results
+SELECT r.ReportID,
+i.Name        AS item_reported,
+i.LocationLost,
+r.ReportDate
+FROM Report r
+JOIN ReportItem ri ON ri.ReportID = r.ReportID
+JOIN Item i       ON i.ItemID     = ri.ItemID
+ORDER BY r.ReportID;

@@ -1,0 +1,92 @@
+-- Make sure statuses exist
+INSERT INTO Status(StatusID, Label)
+SELECT 1, 'Pending'  WHERE NOT EXISTS (SELECT 1 FROM Status WHERE StatusID=1);
+INSERT INTO Status(StatusID, Label)
+SELECT 2, 'Accepted' WHERE NOT EXISTS (SELECT 1 FROM Status WHERE StatusID=2);
+
+-- Insert three students + one admin
+-- Luna
+INSERT INTO User (Email, Password) VALUES ('luna.hoxha@uni.de','LuH!2025#');
+SET @s1 = LAST_INSERT_ID();
+INSERT INTO Student (UserID) VALUES (@s1);
+
+-- Marco
+INSERT INTO User (Email, Password) VALUES ('marco.bianchi@uni.de','Mb_97*Uni');
+SET @s2 = LAST_INSERT_ID();
+INSERT INTO Student (UserID) VALUES (@s2);
+
+-- Sofia
+INSERT INTO User (Email, Password) VALUES ('sofia.martinez@uni.de','Sm@21Safe');
+SET @s3 = LAST_INSERT_ID();
+INSERT INTO Student (UserID) VALUES (@s3);
+
+-- Admin
+INSERT INTO User (Email, Password) VALUES ('admin.uni@uni.de','Adm#Uni2025!');
+SET @admin = LAST_INSERT_ID();
+INSERT INTO Admin (UserID) VALUES (@admin);
+
+-- Reports + Items
+-- Luna -> backpack
+INSERT INTO Report (UserID) VALUES (@s1);
+SET @r1 = LAST_INSERT_ID();
+INSERT INTO LostReport (ReportID) VALUES (@r1);
+
+INSERT INTO Item (Name, Category, Description, DateLost, LocationLost)
+VALUES ('Backpack','Bags','Black Eastpak','2025-09-10','Library');
+SET @i1 = LAST_INSERT_ID();
+INSERT INTO LostItem (ItemID) VALUES (@i1);
+
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r1, @i1);
+
+-- Marco -> phone
+INSERT INTO Report (UserID) VALUES (@s2);
+SET @r2 = LAST_INSERT_ID();
+INSERT INTO LostReport (ReportID) VALUES (@r2);
+
+INSERT INTO Item (Name, Category, Description, DateLost, LocationLost)
+VALUES ('Phone','Electronics','iPhone 13','2025-09-12','Cafeteria');
+SET @i2 = LAST_INSERT_ID();
+INSERT INTO LostItem (ItemID) VALUES (@i2);
+
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r2, @i2);
+
+-- Sofia -> laptop
+INSERT INTO Report (UserID) VALUES (@s3);
+SET @r3 = LAST_INSERT_ID();
+INSERT INTO LostReport (ReportID) VALUES (@r3);
+
+INSERT INTO Item (Name, Category, Description, DateLost, LocationLost)
+VALUES ('Laptop','Electronics','ThinkPad T14','2025-09-13','Lecture Hall A');
+SET @i3 = LAST_INSERT_ID();
+INSERT INTO LostItem (ItemID) VALUES (@i3);
+
+INSERT INTO ReportItem (ReportID, ItemID) VALUES (@r3, @i3);
+
+-- Assign statuses
+-- Luna: Pending
+INSERT INTO ItemStatus (ItemID, StatusID) VALUES (@i1, 1)
+ON DUPLICATE KEY UPDATE StatusID=VALUES(StatusID);
+INSERT INTO AdminVerifiesItemStatus (AdminID, ItemID, StatusID)
+VALUES (@admin, @i1, 1);
+
+
+-- Marco: Accepted
+INSERT INTO ItemStatus (ItemID, StatusID) VALUES (@i2, 2)
+ON DUPLICATE KEY UPDATE StatusID=VALUES(StatusID);
+INSERT INTO AdminVerifiesItemStatus (AdminID, ItemID, StatusID)
+VALUES (@admin, @i2, 2);
+
+-- Sofia: Pending
+INSERT INTO ItemStatus (ItemID, StatusID) VALUES (@i3, 1)
+ON DUPLICATE KEY UPDATE StatusID=VALUES(StatusID);
+INSERT INTO AdminVerifiesItemStatus (AdminID, ItemID, StatusID)
+VALUES (@admin, @i3, 1);
+
+-- Show report IDs + Status
+SELECT r.ReportID,
+s.Label AS current_status
+FROM Report r
+JOIN ReportItem ri ON r.ReportID = ri.ReportID
+JOIN ItemStatus ist ON ri.ItemID = ist.ItemID
+JOIN Status s ON ist.StatusID = s.StatusID
+ORDER BY r.ReportID;

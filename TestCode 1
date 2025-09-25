@@ -1,0 +1,16 @@
+-- Insert three students + one admin
+INSERT INTO User(Email,Password) VALUES ('luna.hoxha@uni.de','LuH!2025#');
+INSERT INTO User(Email,Password) VALUES ('marco.bianchi@uni.de','Mb_97*Uni');
+INSERT INTO User(Email,Password) VALUES ('sofia.martinez@uni.de','Sm@21Safe');
+INSERT INTO User(Email,Password) VALUES ('admin.uni@uni.de','Adm#Uni2025!');
+
+-- Put them in ISA tables
+INSERT INTO Student(UserID) SELECT UserID FROM User WHERE Email='luna.hoxha@uni.de';
+INSERT INTO Student(UserID) SELECT UserID FROM User WHERE Email='marco.bianchi@uni.de';
+INSERT INTO Student(UserID) SELECT UserID FROM User WHERE Email='sofia.martinez@uni.de';
+INSERT INTO Admin(UserID)   SELECT UserID FROM User WHERE Email='admin.uni@uni.de';
+
+-- Check student accounts
+SELECT u.UserID, u.Email, u.Password
+FROM User u
+JOIN Student s ON u.UserID = s.UserID;

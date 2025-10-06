@@ -1,0 +1,122 @@
+First query: 
++--------+-----------------------+---------+
+| UserID | Email                 | Role    |
++--------+-----------------------+---------+
+|   9001 | admin.uni@uni.de      | Admin   |
+|   1004 | amelie.dupont@uni.de  | Student |
+|   1001 | luna.hoxha@uni.de     | Student |
+|   1002 | marco.bianchi@uni.de  | Student |
+|   1006 | mei.yung@uni.de       | Student |
+|   1005 | noah.johansson@uni.de | Student |
+|   1003 | sofia.martinez@uni.de | Student |
++--------+-----------------------+---------+
+
+Second query: 
++-----------------------+---------------+
+| student_email         | total_reports |
++-----------------------+---------------+
+| amelie.dupont@uni.de  |             2 |
+| noah.johansson@uni.de |             2 |
+| luna.hoxha@uni.de     |             1 |
+| marco.bianchi@uni.de  |             1 |
+| sofia.martinez@uni.de |             1 |
++-----------------------+---------------+
+
+Third query:
++--------+-----------------------+---------+-------------------+
+| UserID | Email                 | Role    | Activity          |
++--------+-----------------------+---------+-------------------+
+|   1001 | luna.hoxha@uni.de     | Student | Inactive Reporter |
+|   1002 | marco.bianchi@uni.de  | Student | Inactive Reporter |
+|   1006 | mei.yung@uni.de       | Student | Inactive Reporter |
+|   1003 | sofia.martinez@uni.de | Student | Inactive Reporter |
+|   1004 | amelie.dupont@uni.de  | Student | Active Reporter   |
+|   1005 | noah.johansson@uni.de | Student | Active Reporter   |
++--------+-----------------------+---------+-------------------+
+
+Fourth query:
++-----------+----------+-------------+
+| ItemID    | Name     | Category    |
++-----------+----------+-------------+
+| ITM-00201 | Backpack | Bags        |
+| ITM-00202 | Phone    | Electronics |
+| ITM-00203 | Jacket   | Clothes     |
+| ITM-00204 | Laptop   | Electronics |
+| ITM-00205 | Tablet   | Electronics |
++-----------+----------+-------------+
+
+Fifth query:
++-----------+----------+------------+
+| ItemID    | Name     | DateLost   |
++-----------+----------+------------+
+| ITM-00201 | Backpack | 2025-09-10 |
+| ITM-00202 | Phone    | 2025-09-12 |
+| ITM-00204 | Laptop   | 2025-09-13 |
+| ITM-00203 | Jacket   | 2025-09-14 |
+| ITM-00205 | Tablet   | 2025-09-15 |
++-----------+----------+------------+
+
+Sixth query:
++-----------+----------+----------------+
+| ItemID    | Name     | LocationLost   |
++-----------+----------+----------------+
+| ITM-00203 | Jacket   | Cafeteria      |
+| ITM-00202 | Phone    | Gym            |
+| ITM-00204 | Laptop   | Lecture Hall A |
+| ITM-00201 | Backpack | Library        |
+| ITM-00205 | Tablet   | Library        |
++-----------+----------+----------------+
+
+Seventh query:
++-----------+--------+-------------+---------+
+| ItemID    | Name   | Category    | status  |
++-----------+--------+-------------+---------+
+| ITM-00203 | Jacket | Clothes     | Pending |
+| ITM-00204 | Laptop | Electronics | Pending |
+| ITM-00205 | Tablet | Electronics | Pending |
++-----------+--------+-------------+---------+
+
+Eighth query:
++-----------+----------+-------------+----------+
+| ItemID    | Name     | Category    | status   |
++-----------+----------+-------------+----------+
+| ITM-00201 | Backpack | Bags        | Accepted |
+| ITM-00202 | Phone    | Electronics | Accepted |
++-----------+----------+-------------+----------+
+
+Ninth query:
++-----------------+
+| student_email   |
++-----------------+
+| mei.yung@uni.de |
++-----------------+
+
+Tenth query:
++-----------+----------+--------------+---------------+
+| ItemID    | Name     | first_status | latest_status |
++-----------+----------+--------------+---------------+
+| ITM-00201 | Backpack | Accepted     | Pending       |
++-----------+----------+--------------+---------------+
+
+Eleventh query:
++-----------+----------+---------------------+
+| ItemID    | Name     | VerifiedAt          |
++-----------+----------+---------------------+
+| ITM-00202 | Phone    | 2025-09-16 16:45:00 |
+| ITM-00201 | Backpack | 2025-09-16 10:30:00 |
+| ITM-00205 | Tablet   | 2025-09-15 18:00:00 |
+| ITM-00203 | Jacket   | 2025-09-14 20:00:00 |
+| ITM-00204 | Laptop   | 2025-09-13 12:00:00 |
+| ITM-00201 | Backpack | 2025-09-10 12:00:00 |
++-----------+----------+---------------------+
+
+Twelfth query:
++-----------+----------+--------------+
+| ItemID    | Name     | found_status |
++-----------+----------+--------------+
+| ITM-00201 | Backpack | Found        |
+| ITM-00202 | Phone    | Found        |
+| ITM-00203 | Jacket   | Not Found    |
+| ITM-00204 | Laptop   | Not Found    |
+| ITM-00205 | Tablet   | Not Found    |
++-----------+----------+--------------+

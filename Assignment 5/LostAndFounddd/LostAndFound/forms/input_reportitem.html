@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Link Report ↔ Item</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="main" style="padding:24px;">
+  <section class="card">
+    <h2>🔗 Link Report ↔ Item</h2>
+
+    <form id="f" method="post" action="#">
+      <div style="display:grid; gap:12px; max-width:440px;">
+        <label>Report ID
+          <input type="number" name="report_id" placeholder="e.g., 101" required min="1" step="1">
+        </label>
+
+        <label>Item ID
+          <input type="number" name="item_id" placeholder="e.g., 10" required min="1" step="1">
+        </label>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button class="btn primary" type="submit">Submit</button>
+        <a class="btn primary" href="../maintenance.html">Back</a>
+      </div>
+
+     
+    </form>
+
+    <div id="msg" class="card" style="display:none; margin-top:12px;">
+      ✅ Data saved
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('f').addEventListener('submit', e=>{
+      e.preventDefault();
+      document.getElementById('msg').style.display='block';
+      
+    });
+  </script>
+</body>
+</html>

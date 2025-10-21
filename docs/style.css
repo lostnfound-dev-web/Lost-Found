@@ -1,12 +1,12 @@
-/* ====== Corporate Design ====== */
+/* Corporate Design */
 :root{
   --bg:#f5f7fb;
   --surface:#ffffff;
   --border:#e6eaf2;
   --text:#0f1b2d;
   --muted:#6b7280;
-  --brand:#1e3a8a;      /* deep blue */
-  --brand-2:#3b82f6;    /* accent blue */
+  --brand:#1e3a8a;     
+  --brand-2:#3b82f6;    
   --ok:#16a34a;
   --warn:#f59e0b;
   --shadow:0 10px 24px rgba(15,27,45,.06);
@@ -22,7 +22,6 @@ body{
   background:var(--bg);
 }
 
-/* ====== Layout ====== */
 .sidebar{
   position:fixed; inset:0 auto 0 0;
   width:260px; background:var(--surface); border-right:1px solid var(--border);
@@ -45,7 +44,6 @@ body{
   border-top:1px solid var(--border); background:var(--surface);
 }
 
-/* ====== Sidebar ====== */
 .brand{display:flex; align-items:center; gap:12px; padding:6px 8px 16px}
 .logo{
   inline-size:40px; block-size:40px; border-radius:12px;
@@ -70,13 +68,12 @@ body{
 .imprint-link{color:var(--brand); text-decoration:none}
 .imprint-link:hover{text-decoration:underline}
 
-/* ====== Hero (photo overlay style) ====== */
 .hero{
   position:relative; display:block; padding:48px 24px 24px; overflow:hidden;
   border-bottom:1px solid var(--border); background:var(--surface);
 }
 .hero--photo{
-  background-image: url('./img/lost.jpg'); /* put your image here */
+  background-image: url('./img/lost.jpg'); 
   background-size: cover; background-position:center;
   color:#efeded;
 }
@@ -94,7 +91,6 @@ body{
 .ghost{background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.5)}
 .ghost:hover{background:rgba(255,255,255,.25)}
 
-/* ====== Feature cards ====== */
 .feature-grid{
   max-width:1000px; margin:18px auto 0; padding:0 24px;
   display:grid; gap:14px; grid-template-columns:repeat(3, minmax(0,1fr));
@@ -106,13 +102,11 @@ body{
 .feature-card h3{margin:0 0 6px 0}
 .feature-card p{margin:0; color:var(--muted)}
 
-/* ====== About card ====== */
 .about-card{
   max-width:1000px; margin:14px auto 24px; padding:16px 24px;
   background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow)
 }
 
-/* ====== Imprint page ====== */
 .imprint-body{background:var(--bg)}
 .imprint{
   max-width:850px; margin:48px auto; background:var(--surface);
@@ -126,7 +120,6 @@ body{
 .backlink a{color:var(--brand); text-decoration:none}
 .backlink a:hover{text-decoration:underline}
 
-/* ====== Responsive ====== */
 @media (max-width:1024px){
   .feature-grid{grid-template-columns:repeat(2, minmax(0,1fr));}
 }
@@ -136,3 +129,28 @@ body{
   .hero h1{font-size:32px}
   .feature-grid{grid-template-columns:1fr}
 }
+/* Maintenance */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px 18px;
+  margin:14px 24px;
+  box-shadow:var(--shadow);
+}
+.card h2{ margin:0 0 10px; font-size:1.1rem; }
+
+.list-links{
+  list-style:none; padding:0; margin:0;
+  display:grid; gap:8px;
+}
+.list-links a{
+  text-decoration:none; color:var(--text);
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px;
+  transition:background .15s ease;
+}
+.list-links a:hover{ background:#f5f7fb; }
+
+.list-compact { gap: 6px; }
+.list-compact a { padding:8px 10px; }

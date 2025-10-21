@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Verifies Item Status</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="main" style="padding:24px;">
+  <section class="card">
+    <h2>✅ Admin Verifies Item Status</h2>
+
+    <form id="f" method="post" action="#">
+      <div style="display:grid; gap:12px; max-width:440px;">
+        <label>Admin <br>
+          <input type="email" name="admin_email" placeholder="admin@uni.de" required>
+        </label>
+
+        <label>Item ID<br>
+          <input type="number" name="item_id" placeholder="e.g., 10" required min="1" step="1">
+        </label>
+
+        <label>Status<br>
+          <select name="status_id" required>
+            <option value="">Choose Status </option>
+            <option value="1">Pending</option>
+            <option value="2">Accepted</option>
+          
+          </select>
+        </label>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button class="btn primary" type="submit">Submit</button>
+        <a class="btn primary" href="../maintenance.html">Back</a>
+      </div>
+    </form>
+
+    <div id="msg" class="card" style="display:none; margin-top:12px;">
+      ✅ Verification added
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('f').addEventListener('submit', e=>{
+      e.preventDefault();
+      document.getElementById('msg').style.display='block';
+    });
+  </script>
+</body>
+</html>

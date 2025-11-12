@@ -1,0 +1,5 @@
+127.0.0.1 - - [11/Nov/2025:22:41:15 +0100] "GET /~anmata/ HTTP/1.1" 200 0 "-" "Mozilla/5.0 (Windows NT 10.0) Chrome"
+127.0.0.1 - - [11/Nov/2025:22:41:22 +0100] "GET /~anmata/test_logger.php HTTP/1.1" 200 0 "-" "Mozilla/5.0 (Macintosh) Safari"
+127.0.0.1 - - [11/Nov/2025:22:42:01 +0100] "GET /~anmata/logs/analyze_logs.php HTTP/1.1" 200 0 "-" "Mozilla/5.0 (Windows NT 10.0) Chrome"
+127.0.0.1 - - [11/Nov/2025:22:43:18 +0100] "GET /~anmata/ HTTP/1.1" 200 0 "-" "bot-crawler"
+127.0.0.1 - - [11/Nov/2025:22:44:01 +0100] "GET /~anmata/logs/analyze_logs.php?access=/home/anmata/public_html/logs/lf_access.log&error=/home/anmata/public_html/logs/lf_error.log HTTP/1.1" 200 0 "-" "Mozilla/5.0 (Macintosh) Safari"

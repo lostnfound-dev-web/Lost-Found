@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Add Student</title>
+<link rel="stylesheet" href="../style.css"/>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="../autocomplete.js"></script>
+
+</head>
+<body class="main" style="padding:24px;">
+<section class="card">
+<h2>🎓 Add Student</h2>
+
+<form id="f">
+
+<label>Email<br>
+<input type="email" name="email" class="auto" required placeholder="student@uni.de">
+</label><br><br>
+
+<button class="btn primary" type="submit">Submit</button>
+<a class="btn primary" href="../maintenance.html">Back</a>
+
+</form>
+
+<div id="msg" class="card" style="display:none; margin-top:12px;">✅ Student added</div>
+
+</section>
+
+<script>
+document.getElementById('f').addEventListener('submit', e=>{
+  e.preventDefault();
+  msg.style.display='block';
+});
+</script>
+
+</body>
+</html>
+

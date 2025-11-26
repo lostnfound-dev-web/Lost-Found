@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Add User</title>
+  <link rel="stylesheet" href="../style.css" />
+
+  <!-- AUTOCOMPLETE LIBRARIES -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="../autocomplete.js"></script>
+
+</head>
+
+<body class="main" style="padding:24px;">
+  <section class="card">
+    <h2>📧 Add User</h2>
+
+    <form id="f" method="post" action="#">
+
+      <label>Email<br>
+        <input type="email" name="email" class="auto" required placeholder="user@uni.de">
+      </label>
+      <br><br>
+
+      <label>Password<br>
+        <input type="text" name="password" required>
+      </label>
+      <br><br>
+
+      <div style="display:flex; align-items:center; gap:12px; margin:12px 0;">
+        <label for="create_account" style="margin:0;">Do you want to create an account?</label>
+        <select id="create_account" name="create_account">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button class="btn primary" type="submit">Save</button>
+        <a class="btn primary" href="../maintenance.html">Back</a>
+      </div>
+
+    </form>
+
+    <div id="msg" class="card" style="display:none; margin-top:12px;">
+      ✅ User saved
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('f').addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('msg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
